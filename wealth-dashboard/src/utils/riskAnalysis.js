@@ -8,9 +8,9 @@ export const calculateStandardDeviation = (returns) => {
 
 export const calculateSharpeRatio = (returns, riskFreeRate = 0.035) => {
   const meanReturn = returns.reduce((sum, val) => sum + val, 0) / returns.length;
-  const excessReturn = meanReturn - (riskFreeRate / 252); // Daily risk-free rate
+  const excessReturn = meanReturn - (riskFreeRate / 252);
   const stdDev = calculateStandardDeviation(returns);
-  return (stdDev === 0) ? 0 : (excessReturn / stdDev) * Math.sqrt(252); // Annualized
+  return (stdDev === 0) ? 0 : (excessReturn / stdDev) * Math.sqrt(252);
 };
 
 export const calculateBeta = (portfolioReturns, marketReturns) => {
