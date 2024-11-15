@@ -18,8 +18,7 @@ const PerformanceChart = () => {
   
   const data = performance.dates.map((date, index) => ({
     date: new Date(date).toLocaleDateString(),
-    value: performance.values[index],
-    benchmark: performance.values[index] * (0.95 + Math.random() * 0.1)
+    value: performance.values[index]
   }));
 
   return (
@@ -49,14 +48,6 @@ const PerformanceChart = () => {
             stroke="#1A2B4D" 
             name="Portfolio Value"
             dot={false}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="benchmark" 
-            stroke="#718096" 
-            name="S&P 500"
-            dot={false}
-            strokeDasharray="3 3"
           />
         </LineChart>
       </ResponsiveContainer>

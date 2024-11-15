@@ -35,12 +35,12 @@ const MetricsCards = () => {
   return (
     <Grid container spacing={3}>
       {metricsData.map((metric, index) => (
-        <Grid item xs={12} md={4} key={index}>
+        <Grid item xs={4} key={index}>
           <MetricCard>
-            <Typography variant="subtitle2" color="textSecondary">
+            <Typography variant="body2" color="textSecondary">
               {metric.title}
             </Typography>
-            <Typography variant="h4" component="div" sx={{ my: 1 }}>
+            <Typography variant="h6" component="div" sx={{ my: 0.5 }}>
               {metric.value}
             </Typography>
             <Typography

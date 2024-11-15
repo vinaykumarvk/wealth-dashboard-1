@@ -26,6 +26,7 @@ const AllocationChart = () => {
             outerRadius={80}
             paddingAngle={5}
             dataKey="value"
+            label={({ value }) => `${value}%`}
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
