@@ -1,0 +1,76 @@
+/* Main styling */
+.main-header {
+    color: #1A2B4D;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Metric styling */
+.stMetric {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.stMetric label {
+    color: #718096;
+    font-weight: 600;
+}
+
+.stMetric .css-1wivap2 {
+    color: #1A2B4D;
+    font-weight: 700;
+}
+
+/* Table styling */
+.dataframe {
+    font-family: 'Inter', sans-serif;
+}
+
+.dataframe th {
+    background-color: #1A2B4D !important;
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+.dataframe td {
+    font-size: 0.9rem !important;
+}
+
+/* Chart styling */
+.plotly-graph-div {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    padding: 1rem;
+}
+
+/* Tab styling */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 1rem;
+}
+
+.stTabs [data-baseweb="tab"] {
+    color: #718096;
+    font-weight: 600;
+}
+
+.stTabs [data-baseweb="tab"][aria-selected="true"] {
+    color: #1A2B4D;
+}
+
+/* General styling */
+[data-testid="stMarkdownContainer"] h2 {
+    color: #1A2B4D;
+    font-weight: 700;
+    margin-top: 2rem;
+}
+
+[data-testid="stMarkdownContainer"] h3 {
+    color: #718096;
+    font-weight: 600;
+    margin-top: 1rem;
+}
