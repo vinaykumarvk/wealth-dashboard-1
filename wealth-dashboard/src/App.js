@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { CssBaseline, Container, Box, Grid } from '@mui/material';
+import { CssBaseline, Container, Box, Grid, Button, Modal } from '@mui/material';
 import { store } from './store/store';
 import Header from './components/Header';
 import MetricsCards from './components/MetricsCards';
@@ -10,6 +10,8 @@ import PerformanceChart from './components/PerformanceChart';
 import PortfolioTable from './components/PortfolioTable';
 import RebalancingRecommendations from './components/RebalancingRecommendations';
 import RiskMetrics from './components/RiskMetrics';
+import PDFReport from './components/PDFReport';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 // Create theme with our brand colors
 const theme = createTheme({
@@ -35,7 +37,24 @@ const theme = createTheme({
   },
 });
 
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '90%',
+  height: '90%',
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  p: 4,
+};
+
 function App() {
+  const [openPDFModal, setOpenPDFModal] = useState(false);
+
+  const handleOpenPDFModal = () => setOpenPDFModal(true);
+  const handleClosePDFModal = () => setOpenPDFModal(false);
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
@@ -43,6 +62,15 @@ function App() {
         <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', width: '100%' }}>
           <Header />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4, width: '100%' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+              <Button
+                variant="contained"
+                startIcon={<PictureAsPdfIcon />}
+                onClick={handleOpenPDFModal}
+              >
+                Generate PDF Report
+              </Button>
+            </Box>
             <MetricsCards />
             <RiskMetrics />
             <Grid container spacing={3} sx={{ mt: 2, mb: 4 }}>
@@ -55,6 +83,15 @@ function App() {
             </Grid>
             <PortfolioTable />
             <RebalancingRecommendations />
+            <Modal
+              open={openPDFModal}
+              onClose={handleClosePDFModal}
+              aria-labelledby="pdf-report-modal"
+            >
+              <Box sx={modalStyle}>
+                <PDFReport />
+              </Box>
+            </Modal>
           </Container>
         </Box>
       </ThemeProvider>
