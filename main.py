@@ -33,13 +33,13 @@ col1, col2, col3 = st.columns(3)
 # Key metrics
 with col1:
     st.metric("Total Portfolio Value", f"${metrics['total_value']:,.2f}", 
-              f"{metrics['daily_change']}%")
+              f"{metrics['daily_change']:.2f}%")
 with col2:
     st.metric("Total Gain/Loss", f"${metrics['total_gain']:,.2f}", 
-              f"{metrics['gain_percentage']}%")
+              f"{metrics['gain_percentage']:.2f}%")
 with col3:
-    st.metric("ROI", f"{metrics['roi']}%", 
-              f"{metrics['roi_change']}%")
+    st.metric("ROI", f"{metrics['roi']:.2f}%", 
+              f"{metrics['roi_change']:.2f}%")
 
 # Portfolio Summary
 st.markdown("## Portfolio Overview")

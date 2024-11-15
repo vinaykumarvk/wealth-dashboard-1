@@ -23,7 +23,7 @@
 .stMetric .css-1wivap2 {
     color: #1A2B4D;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1rem !important;
 }
 
 /* Table styling */

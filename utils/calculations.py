@@ -33,15 +33,15 @@ def calculate_performance_metrics(portfolio_data):
     """Calculate detailed performance metrics"""
     return pd.DataFrame({
         'Metric': ['1-Month Return', '3-Month Return', 'YTD Return', '1-Year Return'],
-        'Value': [5.2, 12.4, 18.7, 24.5],
-        'Benchmark': [4.8, 11.9, 17.5, 22.8],
-        'Alpha': [0.4, 0.5, 1.2, 1.7]
+        'Value': [5.20, 12.40, 18.70, 24.50],
+        'Benchmark': [4.80, 11.90, 17.50, 22.80],
+        'Alpha': [0.40, 0.50, 1.20, 1.70]
     })
 
 def calculate_risk_metrics(portfolio_data):
     """Calculate risk metrics"""
     return pd.DataFrame({
         'Metric': ['Beta', 'Sharpe Ratio', 'Sortino Ratio', 'Max Drawdown'],
-        'Value': [1.05, 1.82, 2.14, -12.5],
-        'Category Avg': [1.00, 1.65, 1.95, -15.2]
+        'Value': [1.05, 1.82, 2.14, -12.50],
+        'Category Avg': [1.00, 1.65, 1.95, -15.20]
     })
