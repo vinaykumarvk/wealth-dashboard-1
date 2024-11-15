@@ -20,7 +20,7 @@ const Header = () => {
         <Box display="flex" alignItems="center" width="100%">
           <Logo src="/logo.png" alt="Wealth Dashboard Logo" />
           <Typography variant="h4" component="h1" sx={{ fontWeight: 700 }}>
-            Your Dashboard
+            Wealth Management Dashboard
           </Typography>
         </Box>
       </Toolbar>
