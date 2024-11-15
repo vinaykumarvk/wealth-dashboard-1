@@ -4,11 +4,12 @@ import { Paper, Typography, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const MetricCard = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(2),
+  padding: theme.spacing(1.5),
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center'
+  alignItems: 'center',
+  justifyContent: 'center'
 }));
 
 const RiskMetrics = () => {
@@ -38,17 +39,17 @@ const RiskMetrics = () => {
   ];
 
   return (
-    <Grid container spacing={3} sx={{ mt: 2 }}>
+    <Grid container spacing={2} sx={{ mt: 2 }}>
       {riskMetrics.map((metric) => (
-        <Grid item xs={12} sm={6} md={3} key={metric.title}>
+        <Grid item xs={3} key={metric.title}>
           <MetricCard>
-            <Typography variant="subtitle2" color="textSecondary" align="center">
+            <Typography variant="body2" color="textSecondary" align="center">
               {metric.title}
             </Typography>
-            <Typography variant="h4" component="div" sx={{ my: 1 }}>
+            <Typography variant="h6" component="div" sx={{ my: 0.5 }}>
               {metric.value}
             </Typography>
-            <Typography variant="body2" color="textSecondary" align="center">
+            <Typography variant="caption" color="textSecondary" align="center">
               {metric.description}
             </Typography>
           </MetricCard>
