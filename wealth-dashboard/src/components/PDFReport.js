@@ -1,71 +1,62 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { formatCurrency, formatPercentage } from '../utils/formatters';
 
 const styles = StyleSheet.create({
   page: {
-    flexDirection: 'column',
-    backgroundColor: '#FFFFFF',
     padding: 30,
+    backgroundColor: '#ffffff'
   },
   section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
+    marginBottom: 20
   },
   title: {
     fontSize: 24,
     marginBottom: 20,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: 16,
     marginBottom: 10,
-    marginTop: 20,
+    marginTop: 15
   },
-  text: {
-    fontSize: 12,
-    marginBottom: 5,
-  },
-  table: {
-    display: 'table',
-    width: 'auto',
-    marginVertical: 10,
-  },
-  tableRow: {
+  row: {
     flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#000',
-    borderBottomStyle: 'solid',
-    alignItems: 'center',
-    minHeight: 24,
+    marginBottom: 5
+  },
+  cell: {
+    flex: 1,
+    padding: 5
   },
   tableHeader: {
     backgroundColor: '#f0f0f0',
-  },
-  tableCell: {
-    flex: 1,
-    padding: 5,
-  },
-  metricsGrid: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginVertical: 10,
+    borderBottomColor: '#000000',
+    borderBottomWidth: 1,
+    alignItems: 'center',
+    height: 24,
+    fontStyle: 'bold',
   },
-  metricBox: {
-    width: '50%',
-    padding: 5,
+  tableRow: {
+    flexDirection: 'row',
+    borderBottomColor: '#000000',
+    borderBottomWidth: 1,
+    alignItems: 'center',
+    height: 24
   },
-  date: {
+  footer: {
+    position: 'absolute',
+    bottom: 30,
+    left: 30,
+    right: 30,
+    textAlign: 'center',
     fontSize: 10,
-    marginTop: 20,
-    textAlign: 'right',
-  },
+    color: '#666666'
+  }
 });
 
-const PDFReport = () => {
-  const { data, metrics } = useSelector((state) => state.portfolio);
+const PDFReport = ({ portfolio }) => {
+  const { data, metrics } = portfolio;
   const currentDate = new Date().toLocaleDateString();
 
   return (
@@ -73,65 +64,54 @@ const PDFReport = () => {
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
           <Text style={styles.title}>Portfolio Report</Text>
-          <Text style={styles.text}>Generated on: {currentDate}</Text>
-
-          {/* Portfolio Overview */}
-          <Text style={styles.subtitle}>Portfolio Overview</Text>
-          <View style={styles.metricsGrid}>
-            <View style={styles.metricBox}>
-              <Text style={styles.text}>Total Value: {formatCurrency(metrics.totalValue)}</Text>
-            </View>
-            <View style={styles.metricBox}>
-              <Text style={styles.text}>Total Gain/Loss: {formatCurrency(metrics.totalGain)}</Text>
-            </View>
-            <View style={styles.metricBox}>
-              <Text style={styles.text}>ROI: {formatPercentage(metrics.roi)}</Text>
-            </View>
-            <View style={styles.metricBox}>
-              <Text style={styles.text}>Daily Change: {formatPercentage(metrics.dailyChange)}</Text>
-            </View>
-          </View>
-
-          {/* Risk Metrics */}
-          <Text style={styles.subtitle}>Risk Analysis</Text>
-          <View style={styles.metricsGrid}>
-            <View style={styles.metricBox}>
-              <Text style={styles.text}>Volatility: {metrics.volatility.toFixed(2)}%</Text>
-            </View>
-            <View style={styles.metricBox}>
-              <Text style={styles.text}>Beta: {metrics.beta.toFixed(2)}</Text>
-            </View>
-            <View style={styles.metricBox}>
-              <Text style={styles.text}>Sharpe Ratio: {metrics.sharpeRatio.toFixed(2)}</Text>
-            </View>
-            <View style={styles.metricBox}>
-              <Text style={styles.text}>Max Drawdown: {metrics.maxDrawdown.toFixed(2)}%</Text>
-            </View>
-          </View>
-
-          {/* Holdings Table */}
-          <Text style={styles.subtitle}>Portfolio Holdings</Text>
-          <View style={styles.table}>
-            <View style={[styles.tableRow, styles.tableHeader]}>
-              <Text style={styles.tableCell}>Asset</Text>
-              <Text style={styles.tableCell}>Value</Text>
-              <Text style={styles.tableCell}>Weight</Text>
-              <Text style={styles.tableCell}>Return</Text>
-            </View>
-            {data.holdings.map((holding, index) => (
-              <View key={index} style={styles.tableRow}>
-                <Text style={styles.tableCell}>{holding.asset}</Text>
-                <Text style={styles.tableCell}>{formatCurrency(holding.currentValue)}</Text>
-                <Text style={styles.tableCell}>{formatPercentage(holding.weight)}</Text>
-                <Text style={styles.tableCell}>{formatPercentage(holding.return)}</Text>
-              </View>
-            ))}
-          </View>
-
-          <Text style={styles.date}>
-            Report generated by Wealth Management Dashboard
-          </Text>
+          <Text>Generated on: {currentDate}</Text>
         </View>
+
+        <View style={styles.section}>
+          <Text style={styles.subtitle}>Portfolio Overview</Text>
+          <View style={styles.row}>
+            <Text style={styles.cell}>Total Value: {formatCurrency(metrics.totalValue)}</Text>
+            <Text style={styles.cell}>Total Gain/Loss: {formatCurrency(metrics.totalGain)}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.cell}>ROI: {formatPercentage(metrics.roi)}</Text>
+            <Text style={styles.cell}>Daily Change: {formatPercentage(metrics.dailyChange)}</Text>
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.subtitle}>Risk Analysis</Text>
+          <View style={styles.row}>
+            <Text style={styles.cell}>Volatility: {metrics.volatility.toFixed(2)}%</Text>
+            <Text style={styles.cell}>Beta: {metrics.beta.toFixed(2)}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.cell}>Sharpe Ratio: {metrics.sharpeRatio.toFixed(2)}</Text>
+            <Text style={styles.cell}>Max Drawdown: {metrics.maxDrawdown.toFixed(2)}%</Text>
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.subtitle}>Portfolio Holdings</Text>
+          <View style={styles.tableHeader}>
+            <Text style={[styles.cell, { flex: 2 }]}>Asset</Text>
+            <Text style={styles.cell}>Value</Text>
+            <Text style={styles.cell}>Weight</Text>
+            <Text style={styles.cell}>Return</Text>
+          </View>
+          {data.holdings.map((holding, index) => (
+            <View key={index} style={styles.tableRow}>
+              <Text style={[styles.cell, { flex: 2 }]}>{holding.asset}</Text>
+              <Text style={styles.cell}>{formatCurrency(holding.currentValue)}</Text>
+              <Text style={styles.cell}>{formatPercentage(holding.weight)}</Text>
+              <Text style={styles.cell}>{formatPercentage(holding.return)}</Text>
+            </View>
+          ))}
+        </View>
+
+        <Text style={styles.footer}>
+          Report generated by Wealth Management Dashboard
+        </Text>
       </Page>
     </Document>
   );
