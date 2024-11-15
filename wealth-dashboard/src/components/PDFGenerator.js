@@ -7,14 +7,14 @@ import PDFReport from './PDFReport';
 
 const PDFGenerator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
-  const portfolio = useSelector((state) => state.portfolio);
+  const { data, metrics } = useSelector((state) => state.portfolio);
 
   const handleGeneratePDF = useCallback(async () => {
     if (isGenerating) return;
 
     try {
       setIsGenerating(true);
-      const blob = await pdf(<PDFReport portfolio={portfolio} />).toBlob();
+      const blob = await pdf(<PDFReport data={data} metrics={metrics} />).toBlob();
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
@@ -28,7 +28,7 @@ const PDFGenerator = () => {
     } finally {
       setIsGenerating(false);
     }
-  }, [portfolio, isGenerating]);
+  }, [data, metrics, isGenerating]);
 
   return (
     <Button

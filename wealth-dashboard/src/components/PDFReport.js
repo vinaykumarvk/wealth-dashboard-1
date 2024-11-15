@@ -55,16 +55,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const PDFReport = ({ portfolio }) => {
-  const { data, metrics } = portfolio;
-  const currentDate = new Date().toLocaleDateString();
-
+const PDFReport = ({ data, metrics }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
           <Text style={styles.title}>Portfolio Report</Text>
-          <Text>Generated on: {currentDate}</Text>
+          <Text>Generated on: {new Date().toLocaleDateString()}</Text>
         </View>
 
         <View style={styles.section}>
