@@ -18,14 +18,14 @@
 .stMetric label {
     color: #718096;
     font-weight: 600;
-    font-size: 0.9rem;  /* Reduced label size */
+    font-size: 0.7rem;  /* Reduced label size as well */
 }
 
 .stMetric .css-1wivap2 {
     color: #1A2B4D;
     font-weight: 700;
-    font-size: 0.85rem !important;  /* Further reduced value size */
-    padding: 0.2rem 0;  /* Added vertical padding */
+    font-size: 0.6rem !important;  /* Reduced by 30% from 0.85rem */
+    padding: 0.2rem 0;
 }
 
 .stMetric .css-1wivap2 div {

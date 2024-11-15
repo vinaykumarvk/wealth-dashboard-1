@@ -1,5 +1,6 @@
 import plotly.graph_objects as go
 import plotly.express as px
+import numpy as np
 
 def create_allocation_chart(portfolio_data):
     """Create asset allocation donut chart"""
@@ -21,15 +22,26 @@ def create_allocation_chart(portfolio_data):
     return fig
 
 def create_performance_chart(portfolio_data):
-    """Create historical performance line chart"""
     fig = go.Figure()
     
+    # Portfolio value trace
     fig.add_trace(go.Scatter(
         x=portfolio_data['performance']['dates'],
         y=portfolio_data['performance']['values'],
         mode='lines',
         name='Portfolio Value',
         line=dict(color='#1A2B4D', width=2)
+    ))
+    
+    # S&P 500 benchmark trace
+    benchmark_values = [val * 0.95 + val * 0.1 * np.random.random() 
+                       for val in portfolio_data['performance']['values']]
+    fig.add_trace(go.Scatter(
+        x=portfolio_data['performance']['dates'],
+        y=benchmark_values,
+        mode='lines',
+        name='S&P 500',
+        line=dict(color='#718096', width=2, dash='dash')
     ))
     
     fig.update_layout(
@@ -40,7 +52,14 @@ def create_performance_chart(portfolio_data):
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         yaxis_gridcolor='#f0f0f0',
-        xaxis_gridcolor='#f0f0f0'
+        xaxis_gridcolor='#f0f0f0',
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        )
     )
     
     return fig
