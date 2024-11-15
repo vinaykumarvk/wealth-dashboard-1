@@ -9,6 +9,7 @@ import AllocationChart from './components/AllocationChart';
 import PerformanceChart from './components/PerformanceChart';
 import PortfolioTable from './components/PortfolioTable';
 import RebalancingRecommendations from './components/RebalancingRecommendations';
+import RiskMetrics from './components/RiskMetrics';
 
 // Create theme with our brand colors
 const theme = createTheme({
@@ -43,6 +44,7 @@ function App() {
           <Header />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4, width: '100%' }}>
             <MetricsCards />
+            <RiskMetrics />
             <Grid container spacing={3} sx={{ mt: 2, mb: 4 }}>
               <Grid item xs={12} md={6}>
                 <AllocationChart />
