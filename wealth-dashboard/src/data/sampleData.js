@@ -2,16 +2,24 @@ const generatePerformanceData = () => {
   const dates = [];
   const values = [];
   const initialValue = 400000;
+  let currentValue = initialValue;
   
+  // Market parameters
+  const annualReturn = 0.08; // 8% expected annual return
+  const dailyReturn = Math.pow(1 + annualReturn, 1/365) - 1;
+  const volatility = 0.12; // 12% annual volatility
+  const dailyVolatility = volatility / Math.sqrt(252);
+
   for (let i = 0; i < 365; i++) {
     const date = new Date();
     date.setDate(date.getDate() - (365 - i));
     dates.push(date.toISOString());
     
-    // Generate smoother value progression
-    const trend = i / 365 * 0.15; // 15% annual growth trend
-    const variation = (Math.random() - 0.5) * 0.02; // Small random variations
-    values.push(initialValue * (1 + trend + variation));
+    // Random walk with drift using log-normal distribution
+    const randomReturn = (Math.random() * 2 - 1) * dailyVolatility;
+    currentValue *= (1 + dailyReturn + randomReturn);
+    
+    values.push(Math.round(currentValue * 100) / 100);
   }
   
   return { dates, values };
