@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline, Container, Box, Grid, Button, Modal } from '@mui/material';
+import { PDFViewer } from '@react-pdf/renderer';
 import { store } from './store/store';
 import Header from './components/Header';
 import MetricsCards from './components/MetricsCards';
@@ -47,6 +48,7 @@ const modalStyle = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
+  overflow: 'hidden'
 };
 
 function App() {
@@ -89,7 +91,9 @@ function App() {
               aria-labelledby="pdf-report-modal"
             >
               <Box sx={modalStyle}>
-                <PDFReport />
+                <PDFViewer style={{ width: '100%', height: '100%' }}>
+                  <PDFReport />
+                </PDFViewer>
               </Box>
             </Modal>
           </Container>
