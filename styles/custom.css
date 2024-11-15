@@ -10,7 +10,7 @@
 /* Metric styling */
 .stMetric {
     background-color: white;
-    padding: 1rem;
+    padding: 0.5rem;  /* Reduced padding */
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
@@ -18,12 +18,20 @@
 .stMetric label {
     color: #718096;
     font-weight: 600;
+    font-size: 0.9rem;  /* Reduced label size */
 }
 
 .stMetric .css-1wivap2 {
     color: #1A2B4D;
     font-weight: 700;
-    font-size: 1rem !important;
+    font-size: 0.85rem !important;  /* Further reduced value size */
+    padding: 0.2rem 0;  /* Added vertical padding */
+}
+
+.stMetric .css-1wivap2 div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Table styling */
