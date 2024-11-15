@@ -24,7 +24,7 @@ const PerformanceChart = () => {
   return (
     <Paper sx={{ p: 2, height: 400 }}>
       <Typography variant="h6" gutterBottom>
-        Performance History
+        Portfolio Value History
       </Typography>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart data={data}>
@@ -46,7 +46,7 @@ const PerformanceChart = () => {
             type="monotone" 
             dataKey="value" 
             stroke="#1A2B4D" 
-            name="Portfolio Value"
+            name="Total Portfolio Value"
             dot={false}
           />
         </LineChart>
