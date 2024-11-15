@@ -14,7 +14,7 @@ const AllocationChart = () => {
   }));
 
   return (
-    <Paper sx={{ p: 2, height: 400 }}>
+    <Paper sx={{ p: 2, height: 400, display: 'flex', flexDirection: 'column' }}>
       <Typography variant="h6" gutterBottom>
         Asset Allocation
       </Typography>

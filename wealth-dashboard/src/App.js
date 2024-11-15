@@ -42,7 +42,7 @@ function App() {
           <Header />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <MetricsCards />
-            <Grid container spacing={3} sx={{ mt: 2 }}>
+            <Grid container spacing={3} sx={{ mt: 2, mb: 4 }}>
               <Grid item xs={12} md={6}>
                 <AllocationChart />
               </Grid>

@@ -5,8 +5,7 @@ import {
   XAxis, 
   YAxis, 
   CartesianGrid, 
-  Tooltip, 
-  Legend,
+  Tooltip,
   ResponsiveContainer 
 } from 'recharts';
 import { useSelector } from 'react-redux';
@@ -21,8 +20,13 @@ const PerformanceChart = () => {
     value: performance.values[index]
   }));
 
+  // Calculate min and max values with margin
+  const minValue = Math.min(...performance.values);
+  const maxValue = Math.max(...performance.values);
+  const margin = (maxValue - minValue) * 0.1; // 10% margin
+
   return (
-    <Paper sx={{ p: 2, height: 400 }}>
+    <Paper sx={{ p: 2, height: 400, display: 'flex', flexDirection: 'column' }}>
       <Typography variant="h6" gutterBottom>
         Portfolio Value History
       </Typography>
@@ -37,6 +41,7 @@ const PerformanceChart = () => {
           <YAxis 
             tickFormatter={(value) => formatCurrency(value)}
             width={80}
+            domain={[minValue - margin, maxValue + margin]}
           />
           <Tooltip 
             formatter={(value) => formatCurrency(value)}
