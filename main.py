@@ -16,8 +16,12 @@ st.set_page_config(
 with open('styles/custom.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-# Header
-st.markdown("<h1 class='main-header'>Wealth Management Dashboard</h1>", unsafe_allow_html=True)
+# Header with logo
+col1, col2 = st.columns([1, 4])
+with col1:
+    st.image('logo.png', width=100)
+with col2:
+    st.markdown("<h1 class='main-header'>Your Dashboard</h1>", unsafe_allow_html=True)
 
 # Get data
 portfolio_data = get_portfolio_data()

@@ -7,4 +7,4 @@ port = 5000
 primaryColor = "#1A2B4D"
 secondaryBackgroundColor = "#718096"
 textColor = "#333333"
-font = "sans-serif"
+font = "sans serif"
