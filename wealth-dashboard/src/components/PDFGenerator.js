@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { pdf } from '@react-pdf/renderer';
 import PDFReport from './PDFReport';
 
 const PDFGenerator = () => {
-  const { data, metrics } = useSelector((state) => state.portfolio);
+  const portfolioData = useSelector((state) => state.portfolio);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const handleGeneratePDF = async () => {
     try {
-      const blob = await pdf(<PDFReport data={data} metrics={metrics} />).toBlob();
+      setIsGenerating(true);
+      const document = <PDFReport data={portfolioData.data} metrics={portfolioData.metrics} />;
+      const blob = await pdf(document).toBlob();
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
@@ -21,17 +24,20 @@ const PDFGenerator = () => {
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error generating PDF:', error);
+    } finally {
+      setIsGenerating(false);
     }
   };
 
   return (
     <Button
       variant="contained"
-      startIcon={<PictureAsPdfIcon />}
+      startIcon={isGenerating ? <CircularProgress size={20} color="inherit" /> : <PictureAsPdfIcon />}
       onClick={handleGeneratePDF}
+      disabled={isGenerating}
       sx={{ mb: 2 }}
     >
-      Download PDF Report
+      {isGenerating ? 'Generating PDF...' : 'Download PDF Report'}
     </Button>
   );
 };
