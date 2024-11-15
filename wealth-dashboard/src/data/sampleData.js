@@ -3,15 +3,15 @@ const generatePerformanceData = () => {
   const values = [];
   const initialValue = 400000;
   
-  // Generate 365 days of data
   for (let i = 0; i < 365; i++) {
     const date = new Date();
     date.setDate(date.getDate() - (365 - i));
     dates.push(date.toISOString());
     
-    // Simple random walk simulation
-    const randomWalk = Math.random() * 0.002 - 0.001;
-    values.push(initialValue * (1 + (i * randomWalk)));
+    // Generate smoother value progression
+    const trend = i / 365 * 0.15; // 15% annual growth trend
+    const variation = (Math.random() - 0.5) * 0.02; // Small random variations
+    values.push(initialValue * (1 + trend + variation));
   }
   
   return { dates, values };

@@ -41,12 +41,11 @@ const PerformanceChart = () => {
           <Tooltip 
             formatter={(value) => formatCurrency(value)}
           />
-          <Legend />
           <Line 
             type="monotone" 
             dataKey="value" 
             stroke="#1A2B4D" 
-            name="Total Portfolio Value"
+            name="Portfolio Value"
             dot={false}
           />
         </LineChart>
