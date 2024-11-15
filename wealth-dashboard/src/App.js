@@ -8,6 +8,7 @@ import MetricsCards from './components/MetricsCards';
 import AllocationChart from './components/AllocationChart';
 import PerformanceChart from './components/PerformanceChart';
 import PortfolioTable from './components/PortfolioTable';
+import RebalancingRecommendations from './components/RebalancingRecommendations';
 
 // Create theme with our brand colors
 const theme = createTheme({
@@ -51,6 +52,7 @@ function App() {
               </Grid>
             </Grid>
             <PortfolioTable />
+            <RebalancingRecommendations />
           </Container>
         </Box>
       </ThemeProvider>
