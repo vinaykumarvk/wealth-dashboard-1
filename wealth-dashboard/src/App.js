@@ -39,9 +39,9 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
+        <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', width: '100%' }}>
           <Header />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, width: '100%' }}>
             <MetricsCards />
             <Grid container spacing={3} sx={{ mt: 2, mb: 4 }}>
               <Grid item xs={12} md={6}>
