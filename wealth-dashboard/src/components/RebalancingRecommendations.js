@@ -9,7 +9,9 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Box
+  Box,
+  styled,
+  useTheme
 } from '@mui/material';
 import { formatCurrency, formatPercentage } from '../utils/formatters';
 

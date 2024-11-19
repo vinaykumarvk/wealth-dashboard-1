@@ -1,68 +1,69 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { CssBaseline, Container, Box, Grid } from '@mui/material';
-import { store } from './store/store';
-import Header from './components/Header';
-import MetricsCards from './components/MetricsCards';
-import AllocationChart from './components/AllocationChart';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Box, AppBar, Toolbar, Typography, Container, CssBaseline, Grid } from '@mui/material';
 import PerformanceChart from './components/PerformanceChart';
 import PortfolioTable from './components/PortfolioTable';
-import RebalancingRecommendations from './components/RebalancingRecommendations';
+import RebalancingRecommendation from './components/RebalancingRecommendation';
 import RiskMetrics from './components/RiskMetrics';
-import PDFGenerator from './components/PDFGenerator';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1A2B4D',
+      main: '#006039', // Rolex Green
     },
     secondary: {
-      main: '#718096',
-    },
-    background: {
-      default: '#f8f9fa',
-    },
-  },
-  typography: {
-    fontFamily: "'Inter', sans-serif",
-    h1: {
-      fontWeight: 700,
-    },
-    h4: {
-      fontWeight: 600,
+      main: '#A37E2C', // Rolex Gold
     },
   },
 });
 
-const App = () => {
+function App() {
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', width: '100%' }}>
-          <Header />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, width: '100%' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
-              <PDFGenerator />
-            </Box>
-            <MetricsCards />
-            <RiskMetrics />
-            <Grid container spacing={3} sx={{ mt: 2, mb: 4 }}>
-              <Grid item xs={12} md={6}>
-                <AllocationChart />
-              </Grid>
-              <Grid item xs={12} md={6}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" sx={{ backgroundColor: '#006039' }}>
+          <Toolbar>
+            <Typography variant="h6" sx={{ flexGrow: 1, color: '#A37E2C' }}>
+              Wealth Insight Dashboard
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        
+        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Grid container spacing={3}>
+            {/* Performance Chart */}
+            <Grid item xs={12} md={8}>
+              <Box sx={{ p: 2, border: '1px solid #A37E2C', borderRadius: 1 }}>
                 <PerformanceChart />
-              </Grid>
+              </Box>
             </Grid>
-            <PortfolioTable />
-            <RebalancingRecommendations />
-          </Container>
-        </Box>
-      </ThemeProvider>
-    </Provider>
+
+            {/* Risk Metrics */}
+            <Grid item xs={12} md={4}>
+              <Box sx={{ p: 2, border: '1px solid #A37E2C', borderRadius: 1 }}>
+                <RiskMetrics />
+              </Box>
+            </Grid>
+
+            {/* Portfolio Table */}
+            <Grid item xs={12} md={8}>
+              <Box sx={{ p: 2, border: '1px solid #A37E2C', borderRadius: 1 }}>
+                <PortfolioTable />
+              </Box>
+            </Grid>
+
+            {/* Rebalancing Recommendation */}
+            <Grid item xs={12} md={4}>
+              <Box sx={{ p: 2, border: '1px solid #A37E2C', borderRadius: 1 }}>
+                <RebalancingRecommendation />
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    </ThemeProvider>
   );
-};
+}
 
 export default App;
